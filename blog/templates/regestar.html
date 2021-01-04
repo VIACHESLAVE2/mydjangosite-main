@@ -1,0 +1,14 @@
+{%extends 'navbar.html'%}
+
+{%block content%}
+<div class="container">
+	<form method="POST">
+		{% csrf_token %}
+		{{form}}
+		<br><br><button class="btn btn-outline-info" type="submit">Лусьнути</button>
+	</form>
+	<p>Якщо ви вже зарєгані, залогінтесь <a href="/blog/login">туть:3</a></p>
+	<p>{{error}}</p>
+</div>
+
+{%endblock%}

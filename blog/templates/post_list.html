@@ -1,18 +1,33 @@
+{%extends 'navbar.html' %}
+
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Шрек сьогодні</title>
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 <body>
-	<h1><em>Смачні матюки</em></h1>
-	<p>{{text1}}</p>
-	<p>{{text2}}</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+ {% block content%}
+	<div class="container">
+		<h1><em>Нормальний заголовок</em></h1>
+		<h3>Hello dear {{name|safe}}!<h3>
+		<div class="row">
+			{% for post in posts %}
+				<div class="col s12 m6 l3">
+					<div class="card">
+						<h2 class="card-title">{{post.title|title}}</h2>
+						<p>{{ post.text|truncatewords:9 }}</p>
+						<strong>{{post.create_date}}</strong>
+						<br><br>
+						<div class="card-action"> 
+							<a href=" {%url 'one_post' post_id=post.id%}">читати далі</a>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+		
+	</div>
+{% endblock %}
 </body>
 </html>
